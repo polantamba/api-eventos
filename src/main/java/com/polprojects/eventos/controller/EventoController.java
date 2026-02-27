@@ -9,14 +9,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/eventos")
 public class EventoController {
-    @Autowired private EventoService service;
+    @Autowired
+    private EventoService eventoService;
 
     @GetMapping
-    public List<Evento> listar() { return service.listarEventos(); }
+    public List<Evento> listar() { return eventoService.mostrarEventos(); }
 
     @PostMapping
-    public Evento crear(@RequestBody Evento evento) { return service.guardarEvento(evento); }
+    public Evento crear(@RequestBody Evento evento) { return eventoService.guardarEvento(evento); }
+
+    @PutMapping("/{id}")
+    public Evento actualizar(@PathVariable Long id, @RequestBody Evento evento) {
+        return eventoService.actualizarEvento(id, evento);
+    }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) { service.eliminarEvento(id); }
+    public void eliminar(@PathVariable Long id) { eventoService.eliminarEvento(id); }
 }

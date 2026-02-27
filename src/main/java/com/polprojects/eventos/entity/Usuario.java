@@ -13,10 +13,14 @@ public class Usuario {
     private String email;
     private String phone;
     private String password;
+    private String area;
+    private String sucursal;
+    private String cedula;
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
     public Usuario() {}
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNombre() { return nombre; }
@@ -27,6 +31,12 @@ public class Usuario {
     public void setPhone(String phone) { this.phone = phone; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    public String getArea() { return area; }
+    public void setArea(String area) { this.area = area; }
+    public String getSucursal() { return sucursal; }
+    public void setSucursal(String sucursal) { this.sucursal = sucursal; }
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
     public Rol getRol() { return rol; }
     public void setRol(Rol rol) { this.rol = rol; }
 }

@@ -5,14 +5,13 @@ import com.polprojects.eventos.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EventoService {
     @Autowired
     private EventoRepository eventoRepository;
 
-    public List<Evento> listarEventos() {
+    public List<Evento> mostrarEventos() {
         return eventoRepository.findAll();
     }
 
@@ -20,8 +19,17 @@ public class EventoService {
         return eventoRepository.save(evento);
     }
 
-    public Optional<Evento> buscarPorId(Long id) {
-        return eventoRepository.findById(id);
+    public Evento actualizarEvento(Long id, Evento evento) {
+        Evento existente = eventoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Evento no encontrado"));
+
+        existente.setNombre(evento.getNombre());
+        existente.setDescripcion(evento.getDescripcion());
+        existente.setImageUrl(evento.getImageUrl());
+        existente.setFecha(evento.getFecha());
+        existente.setPrecio(evento.getPrecio());
+
+        return eventoRepository.save(existente);
     }
 
     public void eliminarEvento(Long id) {
