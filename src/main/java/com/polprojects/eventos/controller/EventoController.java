@@ -8,23 +8,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/eventos")
-@CrossOrigin(origins = "*")
 public class EventoController {
-    @Autowired
-    private EventoService eventoService;
+    @Autowired private EventoService service;
 
     @GetMapping
-    public List<Evento> getAll() {
-        return eventoService.listarEventos();
-    }
+    public List<Evento> listar() { return service.listarEventos(); }
 
     @PostMapping
-    public Evento create(@RequestBody Evento evento) {
-        return eventoService.guardarEvento(evento);
-    }
+    public Evento crear(@RequestBody Evento evento) { return service.guardarEvento(evento); }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        eventoService.eliminarEvento(id);
-    }
+    public void eliminar(@PathVariable Long id) { service.eliminarEvento(id); }
 }
